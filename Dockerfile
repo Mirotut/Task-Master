@@ -10,8 +10,8 @@ COPY requirements.txt .
 # Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install the MySQL connector package
-RUN pip install mysql-connector-python
+# Install pytest
+RUN pip install pytest
 
 # Copy the rest of the application code into the container
 COPY . .
