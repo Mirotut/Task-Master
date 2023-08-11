@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://flaskapp:flaskpass@localhost/taskmaster'
 db = SQLAlchemy(app)
 
 class Todo(db.Model):
@@ -16,7 +16,7 @@ class Todo(db.Model):
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    error_message = None  # Initialize error_message as None
+    error_message = None
     if request.method == 'POST':
         task_content = request.form['content']
 
@@ -61,4 +61,4 @@ def update(id):
         return render_template('update.html', task=task )
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
