@@ -1,9 +1,13 @@
+import os
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://flaskapp:flaskpass@localhost/taskmaster'
+
+# Use MYSQL_HOST environment variable for the MySQL connection
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqlconnector://flaskapp:flaskpass@{os.environ["MYSQL_HOST"]}/taskmaster'
+
 db = SQLAlchemy(app)
 
 class Todo(db.Model):

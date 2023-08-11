@@ -9,6 +9,8 @@ COPY requirements.txt .
 
 # Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install mysql-connector-python
+
 
 # Install pytest
 RUN pip install pytest
