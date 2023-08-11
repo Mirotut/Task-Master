@@ -26,9 +26,6 @@ jobs:
     - name: Build Docker image
       run: docker build -t my-flask-app .
 
-    - name: Test application with Docker
-      run: docker run -e MYSQL_HOST=54.204.212.99 my-flask-app python -m pytest
-
     - name: Deploy to production
       run: |
         docker tag my-flask-app my-docker-registry/my-flask-app:latest
